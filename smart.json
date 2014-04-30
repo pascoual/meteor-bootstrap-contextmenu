@@ -2,7 +2,7 @@
   "name": "bootstrap-contextmenu",
   "description": "A context menu extension of Twitter Bootstrap made for everyone's convenience.",
   "homepage": "https://github.com/pascoual/meteor-bootstrap-contextmenu",
-  "author": "James Santos @sydcanem & wrapped by Pascal Richier @pascalrichier",
-  "version": "0.1.9",
+  "author": "Pascal Richier @pascalrichier has wrapped the lib from James Santos @sydcanem",
+  "version": "0.2.0",
   "git": "https://github.com/pascoual/meteor-bootstrap-contextmenu.git"
 }
