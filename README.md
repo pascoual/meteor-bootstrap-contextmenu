@@ -9,9 +9,10 @@ See a [demo page] [id].
 Installation
 ------------
 
-`bower install bootstrap-contextmenu`
-
-Note: Requires bootstrap.css
+```
+meteor add pascoual:bootstrap-contextmenu
+```
+Note: Requires Bootstrap
 
 Usage
 -----

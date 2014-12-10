@@ -1,11 +1,10 @@
 /*!
  * Bootstrap Context Menu
- * Version: 0.2.0
  * Author: @sydcanem
  * https://github.com/sydcanem/bootstrap-contextmenu
  *
- * Inspired by Twitter Bootstrap's dropdown plugin.
- * Twitter Bootstrap (http://twitter.github.com/bootstrap).
+ * Inspired by Bootstrap's dropdown plugin.
+ * Bootstrap (http://getbootstrap.com).
  *
  * Licensed under MIT
  * ========================================================= */
@@ -93,6 +92,10 @@
 			return false;
 		}
 
+		,keydown: function(e) {
+			if (e.which == 27) this.closemenu(e);
+		}
+
 		,before: function(e) {
 			return true;
 		}
@@ -104,6 +107,7 @@
 		,listen: function () {
 			this.$element.on('contextmenu.context.data-api', this.scopes, $.proxy(this.show, this));
 			$('html').on('click.context.data-api', $.proxy(this.closemenu, this));
+			$('html').on('keydown.context.data-api', $.proxy(this.keydown, this));
 		}
 
 		,destroy: function() {
@@ -112,7 +116,7 @@
 		}
 
 		,isDisabled: function() {
-			return this.$element.hasClass('.disabled') || 
+			return this.$element.hasClass('disabled') || 
 					this.$element.attr('disabled');
 		}
 
@@ -184,9 +188,18 @@
 	 * =================================== */
 
 	$(document)
+	   .on('contextmenu.context.data-api', function() {
+			$(toggle).each(function () {
+				var data = $(this).data('context');
+				if (!data) return;
+				data.closemenu();
+			});
+		})
 		.on('contextmenu.context.data-api', toggle, function(e) {
 			$(this).contextmenu('show', e);
-			e.preventDefault();
-		});
 
+			e.preventDefault();
+			e.stopPropagation();
+		});
+		
 }(jQuery));
