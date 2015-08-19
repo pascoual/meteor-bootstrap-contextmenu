@@ -40,13 +40,13 @@
 				, evt
 				, tp
 				, items
-				, relatedTarget = { relatedTarget: this };
+				, relatedTarget = { relatedTarget: this, target: e.currentTarget };
 
 			if (this.isDisabled()) return;
 
 			this.closemenu();
 
-			if (!this.before.call(this,e,$(e.currentTarget))) return;
+			if (this.before.call(this,e,$(e.currentTarget)) === false) return;
 
 			$menu = this.getMenu();
 			$menu.trigger(evt = $.Event('show.bs.context', relatedTarget));
@@ -89,7 +89,7 @@
 				.off('click.context.data-api', $menu.selector);
 			// Don't propagate click event so other currently
 			// opened menus won't close.
-			return false;
+			e.stopPropagation();
 		}
 
 		,keydown: function(e) {

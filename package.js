@@ -1,6 +1,6 @@
 Package.describe({
   summary: "A context menu extension of Twitter Bootstrap made for everyone's convenience.",
-  version: "1.0.1",
+  version: "1.0.3",
   git: "https://github.com/pascoual/meteor-bootstrap-contextmenu"
 });
 
