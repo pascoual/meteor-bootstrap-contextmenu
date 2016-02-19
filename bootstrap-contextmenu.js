@@ -49,21 +49,23 @@
 			if (this.before.call(this,e,$(e.currentTarget)) === false) return;
 
 			$menu = this.getMenu();
-			$menu.trigger(evt = $.Event('show.bs.context', relatedTarget));
+            // There must be a parent for the menu or else don't do anything
+            if ($menu.offsetParent().offset()) {
+                $menu.trigger(evt = $.Event('show.bs.context', relatedTarget));
 
-			tp = this.getPosition(e, $menu);
-			items = 'li:not(.divider)';
-			$menu.attr('style', '')
-				.css(tp)
-				.addClass('open')
-				.on('click.context.data-api', items, $.proxy(this.onItem, this, $(e.currentTarget)))
-				.trigger('shown.bs.context', relatedTarget);
+                tp = this.getPosition(e, $menu);
+                items = 'li:not(.divider)';
+                $menu.attr('style', '')
+                    .css(tp)
+                    .addClass('open')
+                    .on('click.context.data-api', items, $.proxy(this.onItem, this, $(e.currentTarget)))
+                    .trigger('shown.bs.context', relatedTarget);
 
-			// Delegating the `closemenu` only on the currently opened menu.
-			// This prevents other opened menus from closing.
-			$('html')
-				.on('click.context.data-api', $menu.selector, $.proxy(this.closemenu, this));
-
+                // Delegating the `closemenu` only on the currently opened menu.
+                // This prevents other opened menus from closing.
+                $('html')
+                    .on('click.context.data-api', $menu.selector, $.proxy(this.closemenu, this));
+            }
 			return false;
 		}
 
